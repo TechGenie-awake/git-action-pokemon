@@ -37,6 +37,8 @@ jobs:
     needs: [install-dependencies, run-tests]
     steps:
       - uses: actions/checkout@v4
+      - run: npm install
+        working-directory: ./frontend
       - name: Build frontend
         run: npm run build
         working-directory: ./frontend
