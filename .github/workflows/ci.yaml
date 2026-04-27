@@ -21,16 +21,20 @@ jobs:
     needs: install-dependencies
     steps:
       - uses: actions/checkout@v4
+      - run: npm install
+        working-directory: ./backend
       - name: Run backend tests
         run: npm test
         working-directory: ./backend
+      - run: npm install
+        working-directory: ./frontend
       - name: Run frontend tests
         run: npm test
         working-directory: ./frontend
   
   build-frontend:
     runs-on: ubuntu-latest
-    needs: install-dependencies
+    needs: [install-dependencies, run-tests]
     steps:
       - uses: actions/checkout@v4
       - name: Build frontend
