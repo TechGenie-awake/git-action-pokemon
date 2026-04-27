@@ -1,0 +1,38 @@
+name : "CI Workflow"
+on:
+  push:
+    branches: [ main ]
+jobs:
+  install-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./backend
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./frontend
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run backend tests
+        run: npm test
+        working-directory: ./backend
+      - name: Run frontend tests
+        run: npm test
+        working-directory: ./frontend
+  
+  build-frontend:
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./frontend
+
+  
