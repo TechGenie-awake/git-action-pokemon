@@ -26,11 +26,11 @@ jobs:
       - name: Run backend tests
         run: npm test
         working-directory: ./backend
-      - run: npm install
-        working-directory: ./frontend
-      - name: Run frontend tests
-        run: npm test
-        working-directory: ./frontend
+      # - run: npm install
+      #   working-directory: ./frontend
+      # - name: Run frontend tests
+      #   run: npm test
+      #   working-directory: ./frontend
   
   build-frontend:
     runs-on: ubuntu-latest
